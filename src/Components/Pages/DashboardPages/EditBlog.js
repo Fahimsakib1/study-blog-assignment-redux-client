@@ -1,16 +1,21 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import postBlogData from "../../../Redux/Thunk/postBlogData";
+import { useDispatch, useSelector } from "react-redux";
+import updateBlogDataByID from "../../../Redux/Thunk/updateBlogDataByID";
+import { useNavigate } from "react-router-dom";
 
 
 
 
-const AddBlog = () => {
+const EditBlog = () => {
 
 
     const { register, handleSubmit, reset } = useForm();
     const dispatch = useDispatch();
+    const state = useSelector((state) => state);
+    console.log("Sates On Edit Blog Page: ", state);
+
+    const { _id, title, category, image, description} = state.blog.blogs
 
 
     //code for getting the  time and date
@@ -22,23 +27,30 @@ const AddBlog = () => {
     const minute = dateForBlog.getMinutes();
     const currentTime = dateForBlog.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     const MonthDateYear = [day, month, year].join('-');
-    const BlogPostedTime = currentTime + ' ' + MonthDateYear;
-    console.log("Date: ", BlogPostedTime);
+    const BlogUpdatedTime = currentTime + ' ' + MonthDateYear;
+    console.log("Date: ", BlogUpdatedTime);
+
+
+    const navigate  = useNavigate();
 
 
     const submit = (data) => {
 
         const blog = {
-            title: data.title,
-            image: data.image,
-            category: data.category,
-            blogPostedTime: BlogPostedTime,
-            description: data.description,
+            title: data.title ? data.title : title,
+            image: data.image ? data.image : image,
+            category: data.category ? data.category : category,
+            blogUpdatedTime: BlogUpdatedTime,
+            description: data.description ? data.description : description,
         };
-        console.log("Added Blog", blog);
-        dispatch(postBlogData(blog))
+        dispatch(updateBlogDataByID(_id, blog))
+        console.log("Edited Blog Details: ", blog);
         reset();
+        // navigate('/')
     };
+
+
+    
 
 
 
@@ -46,7 +58,8 @@ const AddBlog = () => {
     return (
         <div>
 
-            <h1 className='text-center font-bold text-xl text-blue-600 mt-6'>Add Blog</h1>
+            <h1 className='text-center font-bold text-xl text-orange-600 mt-6'>Edit Blog</h1>
+
 
             <div className='flex justify-center items-center h-full mt-6'>
                 <form
@@ -58,7 +71,7 @@ const AddBlog = () => {
                             <span className="label-text font-semibold ">Blog title</span>
                         </label>
 
-                        <input type="text"  {...register("title")}
+                        <input defaultValue={state.blog.blogs.title} type="text" {...register("title")}
                             placeholder="Enter Blog title" className="text-gray-700 font-semibold input input-bordered w-full" />
                     </div>
 
@@ -69,7 +82,7 @@ const AddBlog = () => {
                             <span className="label-text font-semibold ">Image Link</span>
                         </label>
 
-                        <input type="text"  {...register("image")}
+                        <input defaultValue={state.blog.blogs.image} type="text"  {...register("image")}
                             placeholder="Enter Image Title" className="text-gray-700 font-semibold input input-bordered w-full" />
                     </div>
 
@@ -82,10 +95,10 @@ const AddBlog = () => {
                         <select
                             name='category' id='category' {...register("category")}
                             type="text" className="font-semibold select select-bordered w-full text-gray-600">
-                            <option value='visaScholarship'>Visa & Scholarship</option>
-                            <option value='studyAbroad'>Study Abroad</option>
-                            <option value='studyprograms'>Study Programs</option>
-                            <option value='others'>Others</option>
+                            <option selected={state.blog.blogs.category === "visaScholarship" && "Visa & Scholarship"} value='visaScholarship'>Visa & Scholarship</option>
+                            <option selected={state.blog.blogs.category === "studyAbroad" && "Study Abroad"} value='studyAbroad'>Study Abroad</option>
+                            <option selected={state.blog.blogs.category === "studyProgram" && "Study Programs"} value='studyprogram'>Study Programs</option>
+                            <option selected={state.blog.blogs.category === "others" && "Others"} value='others'>Others</option>
                         </select>
 
                     </div>
@@ -94,16 +107,16 @@ const AddBlog = () => {
                         <label className='mb-2 font-semibold' htmlFor='description'>
                             Description
                         </label>
-                        <textarea type="text" name='description' id='description' placeholder="Write Blog Description" className="text-gray-700 font-semibold textarea textarea-bordered textarea-md w-full" {...register("description")} ></textarea>
+                        <textarea defaultValue={state.blog.blogs.description} type="text" name='description' id='description' placeholder="Write Blog Description" className="text-gray-700 font-semibold textarea textarea-bordered textarea-md w-full" {...register("description")} ></textarea>
                     </div>
 
 
                     <div className='flex justify-between items-center w-full'>
                         <button
-                            className=' mt-3 px-4 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-md font-semibold text-white text-lg disabled:bg-gray-500'
+                            className=' mt-3 px-4 py-3 bg-orange-600 hover:bg-orange-700 rounded-md font-semibold text-white text-lg disabled:bg-gray-500'
                             type='submit'
                         >
-                            Add Blog
+                            Edit Done
                         </button>
                     </div>
                 </form>
@@ -112,4 +125,4 @@ const AddBlog = () => {
     );
 };
 
-export default AddBlog;
+export default EditBlog;

@@ -5,6 +5,7 @@ import Dashboard from "../Components/Dashboard/Dashboard";
 import AddBlog from "../Components/Pages/DashboardPages/AddBlog";
 import AllBlogsList from "../Components/Pages/DashboardPages/AllBlogsList";
 import SingleBlogDetailsPage from "../Components/Pages/Home/SingleBlogDetailsPage";
+import EditBlog from "../Components/Pages/DashboardPages/EditBlog";
 
 
 
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
             {
                 path: "/dashboard/addBlog",
                 element: <AddBlog />,
+            },
+            {
+                path: "/dashboard/editBlog",
+                element: <EditBlog />,
             },
         ],
     },

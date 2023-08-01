@@ -1,4 +1,4 @@
-import { getSingleBlog} from "../Actions/blogAction";
+import { getSingleBlog, singleBlogDataForEdit} from "../Actions/blogAction";
 
 const fetchBlogByIDForViewDetails = (id) => {
     return async (dispatch, getState) => {

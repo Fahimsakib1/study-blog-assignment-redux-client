@@ -13,14 +13,22 @@ const HomePage = () => {
     }, [dispatch])
 
     const state = useSelector((state) => state);
-    console.log("Home Page State: ", state);
+    const fetchedBlogs = useSelector((state) => state.blog.blogs);
+    console.log("Home Page States: ", state);
+    console.log("Home Page Blogs: ", fetchedBlogs);
+
+    
 
     return (
         <div className='px-20'>
 
             <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mb-20 mt-16'>
                 {
-                    state.blog.blogs.map((blog, index) => <BlogsCard blog={blog} key={index}></BlogsCard>)
+                    Array.isArray(fetchedBlogs) ?
+                        
+                    fetchedBlogs.map((blog, index) => <BlogsCard blog={blog} key={index}></BlogsCard>)
+
+                        : ''
                 }
             </div>
         </div>

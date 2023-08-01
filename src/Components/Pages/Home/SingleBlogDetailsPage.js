@@ -42,6 +42,12 @@ const SingleBlogDetailsPage = () => {
                                     <img src={blog.image} className='lg:px-16 md:px-8 px-2 text-center rounded-sm' alt='BlogPicture' />
                                 </div>
 
+                                <p className='text-md text-blue-700 font-semibold lg:px-8 md:px-6 px-2 mt-4 '>Posted Time: {blog.blogPostedTime}</p>
+                                {
+                                    blog.blogUpdatedTime &&
+                                    <p className='text-md text-orange-700 font-semibold lg:px-8 md:px-6 px-2 '>Last Update On: {blog.blogUpdatedTime}</p>
+                                }
+
                                 <p className=' mt-4 md:text-[18px] text-[16px] text-gray-700 lg:px-8 md:px-6 px-2 text-justify'>{blog.description}</p>
                             </div>
                         </div>
