@@ -12,6 +12,8 @@ const AddBlog = () => {
     const { register, handleSubmit, reset } = useForm();
     const dispatch = useDispatch();
 
+    const ISOSPostedDate =  new Date().toISOString();
+    console.log("ISOS Date: ", ISOSPostedDate); 
 
     //code for getting the  time and date
     const dateForBlog = new Date();
@@ -25,6 +27,18 @@ const AddBlog = () => {
     const BlogPostedTime = currentTime + ' ' + MonthDateYear;
     console.log("Date: ", BlogPostedTime);
 
+    
+    
+    
+    // 2023-08-01T18:36:45.235Z
+    // 2023-06-23T10:26:00.996Z
+    // 2023-05-15T10:09:52.523Z
+    // 2023-04-27T19:05:12.541Z
+    // 2023-07-20T18:36:45.239Z
+    // 2023-06-11T23:26:10.947Z
+    // 2023-03-19T22:05:42.123Z
+    // 2023-01-22T16:07:22.421Z
+
 
     const submit = (data) => {
 
@@ -33,6 +47,7 @@ const AddBlog = () => {
             image: data.image,
             category: data.category,
             blogPostedTime: BlogPostedTime,
+            ISOSPostedDate: ISOSPostedDate,
             description: data.description,
         };
         console.log("Added Blog", blog);
@@ -82,9 +97,11 @@ const AddBlog = () => {
                         <select
                             name='category' id='category' {...register("category")}
                             type="text" className="font-semibold select select-bordered w-full text-gray-600">
-                            <option value='visaScholarship'>Visa & Scholarship</option>
-                            <option value='studyAbroad'>Study Abroad</option>
-                            <option value='studyprograms'>Study Programs</option>
+                            <option value='visa '>Visa</option>
+                            <option value='scholarship'>Scholarship</option>
+                            <option value='study'>Study </option>
+                            <option value='programs'>Programs</option>
+                            <option value='abroad'>Abroad</option>
                             <option value='others'>Others</option>
                         </select>
 

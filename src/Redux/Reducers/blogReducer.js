@@ -1,4 +1,4 @@
-import { ADD_BLOG, DELETE_BLOG, EDIT_BLOG, GET_SINGLE_BLOG, LOAD_BLOG, SINGLE_BLOG, UPDATE_BLOG } from "../ActionTypes/ActionTypes";
+import { ADD_BLOG, CLEAR_FILTERS, DELETE_BLOG, EDIT_BLOG, FIRST_UPLOAD_SORT, GET_SINGLE_BLOG, LAST_UPLOAD_SORT, LOAD_BLOG, SEARCH_BY_CATEGORY, UPDATE_BLOG } from "../ActionTypes/ActionTypes";
 
 
 const initialState = {
@@ -14,7 +14,8 @@ const blogReducer = (state = initialState, action) => {
         case LOAD_BLOG:
             return {
                 ...state,
-                blogs: action.payload
+                blogs: action.payload,
+                number: 0
             }
 
         //this function is used to show the blog details on a new route
@@ -51,6 +52,38 @@ const blogReducer = (state = initialState, action) => {
             return {
                 ...state,
                 blogs: action.payload,
+            }
+
+        //this function is used to sort the blogs by first upload on home page
+        case FIRST_UPLOAD_SORT:
+            return {
+                ...state,
+                blogs: action.payload,
+                number: 1
+            }
+
+        //this function is used to sort the blogs by last upload on home page
+        case LAST_UPLOAD_SORT:
+            return {
+                ...state,
+                blogs: action.payload,
+                number: -1
+            }
+
+        //this function is used to clear all filters on home page
+        case CLEAR_FILTERS:
+            return {
+                ...state,
+                blogs: action.payload,
+                number: 0
+            }
+
+        //this function is used to search blogs by category
+        case SEARCH_BY_CATEGORY:
+            return {
+                ...state,
+                blogs: action.payload,
+                done: 1
             }
 
         default:

@@ -1,4 +1,6 @@
-import { ADD_BLOG, DELETE_BLOG, EDIT_BLOG, GET_SINGLE_BLOG, LOAD_BLOG, UPDATE_BLOG } from "../ActionTypes/ActionTypes"
+import { ADD_BLOG, CLEAR_FILTERS, DELETE_BLOG, EDIT_BLOG, FIRST_UPLOAD_SORT, GET_SINGLE_BLOG, LAST_UPLOAD_SORT, LOAD_BLOG, SEARCH_BY_CATEGORY, UPDATE_BLOG } from "../ActionTypes/ActionTypes"
+
+
 
 export const loadBlogs = (data) => {
     return {
@@ -39,5 +41,35 @@ export const updateBlog = (blog) => {
     return {
         type: UPDATE_BLOG,
         payload: blog
+    }
+}
+
+export const firstUpload = (number) => {
+    return {
+        type: FIRST_UPLOAD_SORT,
+        payload: number
+    }
+}
+
+export const lastUpload = (number) => {
+    return {
+        type: LAST_UPLOAD_SORT,
+        payload: number
+    }
+}
+
+
+export const clearFilters = (queryType) => {
+    return {
+        type: CLEAR_FILTERS,
+        payload: queryType
+    }
+}
+
+
+export const searchCategory = (data) => {
+    return {
+        type: SEARCH_BY_CATEGORY,
+        payload: data
     }
 }
