@@ -6,6 +6,7 @@ import AddBlog from "../Components/Pages/DashboardPages/AddBlog";
 import AllBlogsList from "../Components/Pages/DashboardPages/AllBlogsList";
 import SingleBlogDetailsPage from "../Components/Pages/Home/SingleBlogDetailsPage";
 import EditBlog from "../Components/Pages/DashboardPages/EditBlog";
+import ReadingHistoryPage from "../Components/Pages/Home/ReadingHistoryPage";
 
 
 
@@ -21,6 +22,10 @@ const routes = createBrowserRouter([
             {
                 path: "/blogDetails",
                 element: <SingleBlogDetailsPage />,
+            },
+            {
+                path: "/history",
+                element: <ReadingHistoryPage />,
             },
         ],
     },

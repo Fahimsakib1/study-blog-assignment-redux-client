@@ -1,4 +1,4 @@
-import { ADD_BLOG, CLEAR_FILTERS, DELETE_BLOG, EDIT_BLOG, FIRST_UPLOAD_SORT, GET_SINGLE_BLOG, LAST_UPLOAD_SORT, LOAD_BLOG, SEARCH_BY_CATEGORY, UPDATE_BLOG } from "../ActionTypes/ActionTypes";
+import { ADD_BLOG, ADD_TO_HISTORY, CLEAR_FILTERS, DELETE_BLOG, EDIT_BLOG, FIRST_UPLOAD_SORT, GET_SINGLE_BLOG, LAST_UPLOAD_SORT, LOAD_BLOG, SEARCH_BY_CATEGORY, UPDATE_BLOG } from "../ActionTypes/ActionTypes";
 
 
 const initialState = {
@@ -7,6 +7,11 @@ const initialState = {
 };
 
 const blogReducer = (state = initialState, action) => {
+
+    const selectedBlog = state.history.find(
+        (blog) => blog._id === action.payload._id
+    );
+
 
     switch (action.type) {
 
@@ -85,6 +90,25 @@ const blogReducer = (state = initialState, action) => {
                 blogs: action.payload,
                 done: 1
             }
+
+        //this function is used to add to the blogs to History Page
+        case ADD_TO_HISTORY:
+            if (selectedBlog) {
+                const newHistory = state.history.filter(
+                    (blog) => blog._id !== selectedBlog._id
+                );
+
+                selectedBlog.read = selectedBlog.read + 1;
+
+                return {
+                    ...state,
+                    history: [...newHistory, selectedBlog],
+                };
+            }
+            return {
+                ...state,
+                history: [...state.history, { ...action.payload, read: 1 }],
+            };
 
         default:
             return state
