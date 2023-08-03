@@ -6,6 +6,9 @@ import store from './Redux/store';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
+
+ 
+
   return (
     <div >
       <Provider store={store}>

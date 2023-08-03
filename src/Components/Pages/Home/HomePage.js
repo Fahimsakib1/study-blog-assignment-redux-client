@@ -7,6 +7,7 @@ import sortBlogsByLastUpload from '../../../Redux/Thunk/sortBlogsByLastUpload';
 import clearAllFiltersData from '../../../Redux/Thunk/clearAllFiltersData';
 import { FcUpload } from "react-icons/fc";
 import { FaUpload, FaDownload } from "react-icons/fa";
+import Preloader from '../../Preloader/Preloader';
 
 
 
@@ -52,6 +53,15 @@ const HomePage = () => {
     console.log("Home Page All States: ", state);
 
 
+
+    const [preloader, setPreloader] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setPreloader(false)
+        }, 300)
+    }, [])
+
+
     return (
         <div className='px-20'>
 
@@ -89,19 +99,26 @@ const HomePage = () => {
 
 
             <>
-                <div className='text-center text-xl mt-6 mb-2 text-blue-700 font-bold'>
-                    {
-                        contentMessage
-                    }
-                </div>
+                {
+                    preloader ?
+                        <Preloader></Preloader>
+                        :
+                        <>
+                            <div className='text-center text-xl mt-6 mb-2 text-blue-700 font-bold'>
+                                {
+                                    contentMessage
+                                }
+                            </div>
 
-                <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mb-20 mt-8'>
-                    {
-                        Array.isArray(fetchedBlogs) ?
-                            fetchedBlogs.map((blog, index) => <BlogsCard blog={blog} key={index}></BlogsCard>)
-                            : ''
-                    }
-                </div>
+                            <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mb-20 mt-8'>
+                                {
+                                    Array.isArray(fetchedBlogs) ?
+                                        fetchedBlogs.map((blog, index) => <BlogsCard blog={blog} key={index}></BlogsCard>)
+                                        : ''
+                                }
+                            </div>
+                        </>
+                }
 
             </>
 
