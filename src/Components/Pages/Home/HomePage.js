@@ -5,6 +5,11 @@ import BlogsCard from './BlogsCard';
 import sortBlogsByFirstUpload from '../../../Redux/Thunk/sortBlogsByFirstUpload';
 import sortBlogsByLastUpload from '../../../Redux/Thunk/sortBlogsByLastUpload';
 import clearAllFiltersData from '../../../Redux/Thunk/clearAllFiltersData';
+import { FcUpload } from "react-icons/fc";
+import { FaUpload, FaDownload } from "react-icons/fa";
+
+
+
 
 
 
@@ -55,14 +60,20 @@ const HomePage = () => {
                 <button onClick={() => dispatch(sortBlogsByFirstUpload(number))}
                     className={`${state.blog.number === 0 && 'hover:bg-gray-300'} ${state.blog.number === -1 && 'hover:bg-gray-300'} rounded-md cursor-pointer border px-3 py-2  font-semibold ${state.blog.number === 1 ? activeClass : null}`}
                 >
-                    First Upload
+                    <div className='flex justify-start items-center gap-x-2'>
+                        <p>First Upload</p>
+                        <FaUpload className='text-2xl'></FaUpload>
+                    </div>
                 </button>
 
 
                 <button onClick={() => dispatch(sortBlogsByLastUpload(number))}
-                    className={`${state.blog.number === 0 && 'hover:bg-gray-300'} ${state.blog.number === 1 && 'hover:bg-gray-300'}  rounded-md cursor-pointer border px-3 py-2  font-semibold  ${state.blog.number === -1 ? activeClass : null}`}
+                    className={` ${state.blog.number === 0 && 'hover:bg-gray-300'} ${state.blog.number === 1 && 'hover:bg-gray-300'}  rounded-md cursor-pointer border px-3 py-2  font-semibold  ${state.blog.number === -1 ? activeClass : null}`}
                 >
-                    Last Upload
+                    <div className='flex justify-start items-center gap-x-2'>
+                        <p>Last Upload</p>
+                        <FaDownload className='text-2xl'></FaDownload>
+                    </div>
                 </button>
 
                 <button

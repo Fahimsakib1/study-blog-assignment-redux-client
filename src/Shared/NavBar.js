@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
-import { BsFillCartFill } from "react-icons/bs";
 import { FaHistory } from "react-icons/fa";
 import { ImCancelCircle } from "react-icons/im";
 import { useDispatch, useSelector } from 'react-redux';

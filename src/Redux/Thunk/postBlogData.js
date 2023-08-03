@@ -3,7 +3,7 @@ import { addBlog} from "../Actions/blogAction";
 
 const postBlogData = (blog) => {
     return async (dispatch, getState) => {
-        const res = await fetch('http://localhost:5000/addBlog', {
+        const res = await fetch('https://study-abroad-blogs-redux-server.vercel.app/addBlog', {
             method: 'POST',
             body: JSON.stringify(blog),
             headers: { 'Content-Type': 'application/json' }

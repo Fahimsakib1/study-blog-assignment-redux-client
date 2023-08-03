@@ -3,7 +3,7 @@ import { deleteBlogData} from "../Actions/blogAction";
 
 const deleteBlog = (id) => {
     return async (dispatch, getState) => {
-        const res = await fetch(`http://localhost:5000/deleteBlog/${id}`, {
+        const res = await fetch(`https://study-abroad-blogs-redux-server.vercel.app/deleteBlog/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         });
