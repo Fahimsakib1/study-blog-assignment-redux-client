@@ -29,7 +29,6 @@ const HomePage = () => {
 
     const state = useSelector((state) => state);
     const fetchedBlogs = useSelector((state) => state.blog.blogs);
-    // console.log("Home Page All States: ", state);
     console.log("Home Page Blogs: ", fetchedBlogs);
 
 

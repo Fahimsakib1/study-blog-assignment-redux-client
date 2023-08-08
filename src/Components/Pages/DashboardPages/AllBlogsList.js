@@ -25,7 +25,6 @@ const AllBlogsList = () => {
         dispatch(fetchBlogData())
     }, [dispatch]);
 
-    // Array.isArray(data.products) ? data.products.map
 
 
 

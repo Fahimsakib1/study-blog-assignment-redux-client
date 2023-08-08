@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import fetchBlogData from "../../Redux/Thunk/fetchAllBlogs";
 
 
 
@@ -9,10 +8,6 @@ const SideBar = () => {
     
     
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(fetchBlogData())
-    // }, [dispatch])
-
     const state = useSelector((state) => state);
     console.log("Side Bar States: ", state);
     

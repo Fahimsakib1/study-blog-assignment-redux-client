@@ -4,6 +4,14 @@ import fetchBlogByIDForViewDetails from '../../../Redux/Thunk/fetchBlogByIDForVi
 import { Link, useLocation } from 'react-router-dom';
 import { addToHistory } from '../../../Redux/Actions/blogAction';
 
+
+
+
+
+
+
+
+
 const BlogsCard = ({ blog }) => {
 
 
